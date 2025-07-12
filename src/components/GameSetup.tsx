@@ -73,7 +73,7 @@ export const GameSetup: React.FC<GameSetupProps> = ({ onGameStart }) => {
 
   const loadSampleQuestions = async () => {
     try {
-      const response = await fetch('/question.xlsx');
+      const response = await fetch(`${process.env.PUBLIC_URL}/question.xlsx`);
       const arrayBuffer = await response.arrayBuffer();
       const data = new Uint8Array(arrayBuffer);
       const workbook = XLSX.read(data, { type: 'array' });

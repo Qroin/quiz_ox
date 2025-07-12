@@ -1,5 +1,3 @@
-import React, { useEffect } from 'react';
-import * as XLSX from 'xlsx';
 import { GameSetup } from './components/GameSetup';
 import { GameCountdown } from './components/GameCountdown';
 import { GameQuestion } from './components/GameQuestion';
@@ -22,26 +20,6 @@ function App() {
     endGame,
     resetGame
   } = useGameLogic();
-
-  useEffect(() => {
-      const fetchExcel = async () => {
-        try {
-          const response = await fetch(`${import.meta.env.BASE_URL}question.xlsx`);
-          const arrayBuffer = await response.arrayBuffer();
-          const workbook = XLSX.read(arrayBuffer, { type: 'array' });
-          const sheetName = workbook.SheetNames[0];
-          const sheet = workbook.Sheets[sheetName];
-          const data = XLSX.utils.sheet_to_json(sheet);
-          console.log("엑셀 데이터:", data);
-          // 👉 가져온 데이터를 상태로 넘기거나 가공하세요
-        } catch (error) {
-          console.error("엑셀 불러오기 실패:", error);
-        }
-      };
-
-      fetchExcel();
-    }, []);
-
 
   const activeParticipants = gameState.participants.filter(p => p.isActive);
   const currentParticipant = activeParticipants[gameState.currentParticipantIndex];
