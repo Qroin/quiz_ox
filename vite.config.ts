@@ -9,4 +9,7 @@ export default defineConfig({
     outDir: 'docs',
   },
   plugins: [react()],
+  optimizeDeps: {
+    exclude: ['lucide-react'],
+  },
 })
