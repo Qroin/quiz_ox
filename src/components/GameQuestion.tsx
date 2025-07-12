@@ -21,11 +21,11 @@ export const GameQuestion: React.FC<GameQuestionProps> = ({
   onAnswer, 
   onTimeUp 
 }) => {
-  const [timeLeft, setTimeLeft] = useState(3);
+  const [timeLeft, setTimeLeft] = useState(5);
   const [selectedAnswer, setSelectedAnswer] = useState<boolean | null>(null);
 
   useEffect(() => {
-    setTimeLeft(3);
+    setTimeLeft(5);
     setSelectedAnswer(null);
   }, [question, currentParticipant]);
 
@@ -78,7 +78,7 @@ export const GameQuestion: React.FC<GameQuestionProps> = ({
           <div className="w-full bg-white/20 rounded-full h-2">
             <div 
               className="bg-yellow-400 h-2 rounded-full transition-all duration-1000"
-              style={{ width: `${(timeLeft / 3) * 100}%` }}
+              style={{ width: `${(timeLeft / 5) * 100}%` }}
             />
           </div>
         </div>
