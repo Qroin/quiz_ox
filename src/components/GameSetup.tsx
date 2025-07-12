@@ -73,7 +73,7 @@ export const GameSetup: React.FC<GameSetupProps> = ({ onGameStart }) => {
 
   const loadSampleQuestions = async () => {
     try {
-      const response = await fetch(`${process.env.PUBLIC_URL}/question.xlsx`);
+      const response = await fetch(`${import.meta.env.BASE_URL}question.xlsx`);
       const arrayBuffer = await response.arrayBuffer();
       const data = new Uint8Array(arrayBuffer);
       const workbook = XLSX.read(data, { type: 'array' });
@@ -106,9 +106,9 @@ export const GameSetup: React.FC<GameSetupProps> = ({ onGameStart }) => {
       setCsvUploaded(true);
     } catch (error) {
       console.error('샘플 질문 로드 실패:', error);
-      // CSV 파일로 폴백
+ 
       try {
-        const response = await fetch('/질문.csv');
+        const response = await fetch(`${import.meta.env.BASE_URL}question.csv`);
         const text = await response.text();
         const lines = text.split('\n').filter(line => line.trim());
         const parsedQuestions: Question[] = [];
